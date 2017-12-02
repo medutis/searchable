@@ -1,7 +1,6 @@
 <?php namespace Jedrzej\Searchable;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use RuntimeException;
 
@@ -20,7 +19,7 @@ trait SearchableTrait
      */
     public function scopeFiltered(Builder $builder, array $query = [])
     {
-        $query = (array)($query ?: Input::all());
+        $query = (array)($query ?: \Request::all());
 
         $mode = $this->getQueryMode($query);
         $query = $this->filterNonSearchableParameters($query);
